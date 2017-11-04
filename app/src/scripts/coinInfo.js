@@ -2,10 +2,8 @@ $(document).ready( function() {
 
     // Get Web3 Provider
     if(typeof web3 !== 'undefined') {
-        console.log('web3 current provider');
         web3 = new Web3(web3.currentProvider);  
     } else {
-        console.log('web3 localhost:8545');
         web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     }
 
@@ -22,37 +20,69 @@ $(document).ready( function() {
     web3.eth.getBalance(account1Address, function (error, result) {
         if (!error) {
             var formattedBalance = web3.fromWei(result.toNumber(), 'ether');
-            document.getElementById("accountBalance").innerHTML = formattedBalance + ' ether';
+            document.getElementById("accountBalance").innerHTML = formattedBalance;
         }
     })
-    
 
-    // TODO: Fix This - Doesn't Work...
-    // var accountInterval = setInterval(function() {
-    //     console.log(web3.eth.accounts[0]);
-    //   if (web3.eth.accounts[0] !== account) {
-    //     account = web3.eth.accounts[0];
-    //     document.getElementById("accountId").innerHTML = account;
-    //   }
-    // }, 1000);
-
-
-    // Get Total Supply
-    $.getJSON('../contracts/TestCoin.json', function(TestCoin_json) {
-        var contract = TruffleContract( TestCoin_json );
+    $.getJSON('../contracts/SkeletonCoinCrowdsale.json', function(SkeletonCoinCrowdsale_json) {
+        var contract = TruffleContract(SkeletonCoinCrowdsale_json);
         contract.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
-        contract.deployed().then(function(coin) {
 
-            // Get Total Supply
-            coin.totalSupply().then(function(instance) {
-                document.getElementById("totalSupply").innerHTML = instance.toNumber() + ' Test Coin';
+        contract.deployed().then(function(crowdsale) {
+
+            // Get SKC Crowdsale end time
+            crowdsale.endTime().then(function(endTime) {
+                var date = new Date(0);
+                date.setUTCSeconds(endTime.toNumber());
+                document.getElementById("remainingTime").innerHTML = date;
             })
 
-            // Get Account 1 Test Coins
-            coin.balanceOf(account1Address).then(function(balance) {
-                document.getElementById("accountTestCoins").innerHTML = balance + ' coins';
+            // Get SKC Conversion Rate
+            crowdsale.rate().then(function(rate) {
+                console.log(rate.toNumber());
+                document.getElementById("conversionRate").innerHTML = rate.toNumber() + ' SKC = 1 Ether';
+            })
+
+            crowdsale.token().then(function(tokenAddress) {
+                console.log('Contract Address: ' + tokenAddress);
+
+                $.getJSON('../contracts/SkeletonCoin.json', function(SkeletonCoin_json) {
+                    var skeletonCoin = TruffleContract( SkeletonCoin_json );
+                    skeletonCoin.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
+                    var coinInstance = skeletonCoin.at(tokenAddress);
+
+                    // Get Total Supply
+                    coinInstance.totalSupply().then(function(instance) {
+                        document.getElementById("totalSupply").innerHTML = instance.toNumber() + ' Skeleton Coin';
+                    })
+
+                    // Get Current User's SKC Balance
+                    coinInstance.balanceOf(account1Address).then(function(balance) {
+                        document.getElementById("accountTestCoins").innerHTML = balance.toString();
+                    })
+                })
             })
         })
     })
 
+
+
+})
+
+$('#PurchaseCoinButton').click(function() {
+    // Get Contract Information
+    $.getJSON('../contracts/SkeletonCoin.json', function(SkeletonCoin_json) {
+        
+        var contract = TruffleContract( SkeletonCoin_json );
+        contract.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+        contract.deployed().then(function(coin) {
+
+            var account1Address = web3.eth.accounts[0];
+            coin.transfer(account1Address, 1).then(function(res) {
+                console.log(res);
+            })
+
+        })
+    })
 });

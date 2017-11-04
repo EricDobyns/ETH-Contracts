@@ -5,7 +5,7 @@
 
 
 ## About
-This repository contains the initial structure for creating and executing smart contracts on the ethereum network. Includes a web interface and public API.
+This repository contains the initial structure for an ERC20 compliant Ethereum token; a web interface; and a public API. The code-base makes use of Zeppelin and its standard templates, Safemath and other standard solidity best practices. All non-standard functions are unit tested.
 
 ## Requirements
 - Node.js 5.0+ recommended

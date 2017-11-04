@@ -1,5 +1,5 @@
 {
-  "name": "testcoin",
+  "name": "skeleton-coin",
   "version": "1.0.0",
   "author": "Eric Dobyns <ericdobyns@gmail.com>",
   "description": "Testing out solidity and ethereum smart contracts...",

@@ -53,8 +53,10 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
-    gulp.src('build/contracts/TestCoin.json')
+    gulp.src('build/contracts/SkeletonCoin.json')
     .pipe(gulp.dest('app/dist/contracts'))
+    gulp.src('build/contracts/SkeletonCoinCrowdsale.json')
+    .pipe(gulp.dest('app/dist/contracts'))    
     gulp.src('app/src/scripts/truffle-contract.min.js')
     .pipe(gulp.dest('app/dist/scripts'))
     return gulp.src(['app/src/scripts/**/*.js', '!app/src/scripts/truffle-contract.min.js'])
