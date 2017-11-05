@@ -1,22 +1,22 @@
-const express = require('express')
-const app = express()
+'use strict'
+console.log("\nLoading skcUtilities.js !!!\n");
 
-app.use(express.static('./src'));
+// Set Constants
+const Web3 = require('web3')
+const contract = require('truffle-contract');
+const skeletonCoin_artifacts = require('../../../build/contracts/SkeletonCoin.json');
+const skeletonCoinCrowdsale_artifacts = require('../../../build/contracts/SkeletonCoinCrowdsale.json');
+const skeletonCoin = contract(skeletonCoin_artifacts);
+const skeletonCoinCrowdsale = contract(skeletonCoinCrowdsale_artifacts);
 
-var getCoinInfo = function() {
-    var Web3 = require('web3')
-    var contract = require('truffle-contract');
-    var skeletonCoin_artifacts = require('../build/contracts/SkeletonCoin.json');
-    var skeletonCoinCrowdsale_artifacts = require('../build/contracts/SkeletonCoinCrowdsale.json');
-    var skeletonCoin = contract(skeletonCoin_artifacts);
-    var skeletonCoinCrowdsale = contract(skeletonCoinCrowdsale_artifacts);
-    var provider = new Web3.providers.HttpProvider("http://localhost:8545");
 
-    // Set the Contract Provider
-    skeletonCoinCrowdsale.setProvider(provider);
+// Set Web3 Provider
+var provider = new Web3.providers.HttpProvider("http://localhost:8545");
+var web3 = new Web3(provider);
+skeletonCoin.setProvider(provider);
+skeletonCoinCrowdsale.setProvider(provider);
 
-    // Set Web3 Provider
-    var web3 = new Web3(provider);
+exports.getCoinInfo = () => {
 
     // Get Account 1 Address
     var account1Address = web3.eth.accounts[0];
@@ -30,6 +30,7 @@ var getCoinInfo = function() {
         }
     })
 
+    // Get Contract Instance
     skeletonCoinCrowdsale.deployed().then(function(crowdsale) {
 
         // Get SKC Crowdsale end time
@@ -44,10 +45,10 @@ var getCoinInfo = function() {
             console.log('SKC Conversion Rate: ' + rate.toNumber() + ' SKC = 1 Ether');
         })
 
+        // Get Token Instance
         crowdsale.token().then(function(tokenAddress) {
             console.log('Contract Address: ' + tokenAddress);
 
-            skeletonCoin.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
             var coinInstance = skeletonCoin.at(tokenAddress);
 
             // Get Total Supply
@@ -62,13 +63,3 @@ var getCoinInfo = function() {
         })
     })
 }
-
-
-app.get('/', function (req, res) {
-    res.sendFile('index.html',{ root: require('path').join(__dirname, './src') });
-})
-
-app.listen(7171, function () {
-    console.log('Example app listening on port 7171!\n')
-    getCoinInfo();
-})

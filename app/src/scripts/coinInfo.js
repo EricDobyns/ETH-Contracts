@@ -8,8 +8,13 @@ $(document).ready( function() {
     }
 
     // Check if Web3 is Connected
-    if(!web3.isConnected()) {
+    if (!web3.isConnected()) {
         console.error("Not connected");
+    }
+
+    // Check if an account is present
+    if (web3.eth.accounts[0] == null) {
+        return
     }
 
     // Get Account 1 Address
