@@ -1,8 +1,7 @@
 # .gitignore
 
-
-
 # Configuration
+config/
 configuration/
 config.json
 credentials/

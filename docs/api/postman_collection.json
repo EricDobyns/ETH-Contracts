@@ -1,0 +1,168 @@
+{
+	"info": {
+		"name": "Skeleton Coin",
+		"_postman_id": "7dd70a7f-622d-3fe6-1c93-c0826b9bea85",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Web Pages",
+			"description": "",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:1337",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API",
+			"description": "",
+			"item": [
+				{
+					"name": "v1",
+					"description": "",
+					"item": [
+						{
+							"name": "Wallet",
+							"description": "",
+							"item": [
+								{
+									"name": "/wallet",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "AccessKey",
+												"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
+											},
+											{
+												"key": "DeviceId",
+												"value": "1234"
+											}
+										],
+										"body": {},
+										"url": {
+											"raw": "http://localhost:1337/api/v1/wallet",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1337",
+											"path": [
+												"api",
+												"v1",
+												"wallet"
+											]
+										},
+										"description": ""
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "/v1",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "AccessKey",
+										"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
+									},
+									{
+										"key": "DeviceId",
+										"value": "1234"
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:1337/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"v1"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/api",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "AccessKey",
+								"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
+							},
+							{
+								"key": "DeviceId",
+								"value": "1234"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:1337/api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:1337/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"status"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
