@@ -83,8 +83,6 @@ Start up a local web environment:
 gulp
 ```
 
----
-
 ## Deploy local API
 Start up a local API:
 ```
@@ -96,7 +94,4 @@ npm start
 
 # Support
 [insert content]
-
-# License
-MIT
 
