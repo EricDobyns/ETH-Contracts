@@ -5,7 +5,7 @@
   "description": "Testing out solidity and ethereum smart contracts...",
   "license": "ISC",
   "scripts": {
-    "start": "node ./app/index.js"
+    "start": "node ./app/app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",

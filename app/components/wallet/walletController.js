@@ -1,5 +1,4 @@
 'use strict'
-console.log("\nLoading skcUtilities.js !!!\n");
 
 // Set Constants
 const Web3 = require('web3')
@@ -9,13 +8,46 @@ const skeletonCoinCrowdsale_artifacts = require('../../../build/contracts/Skelet
 const skeletonCoin = contract(skeletonCoin_artifacts);
 const skeletonCoinCrowdsale = contract(skeletonCoinCrowdsale_artifacts);
 
-
 // Set Web3 Provider
 var provider = new Web3.providers.HttpProvider("http://localhost:8545");
 var web3 = new Web3(provider);
 skeletonCoin.setProvider(provider);
 skeletonCoinCrowdsale.setProvider(provider);
 
+// Validate Address
+exports.validateAddress = (address, completion) => {
+    completion(web3.isAddress(address))
+}
+
+// Get Eth Balance For Wallet
+exports.getEthBalance = (address, completion) => {
+    this.validateAddress(address, function(isValid) {
+        if (isValid) {
+            web3.eth.getBalance(address, function (error, result) {
+                if (!error) {
+                    var formattedBalance = web3.fromWei(result.toNumber(), 'ether');
+                    completion({
+                        eth: formattedBalance
+                    })
+                } else {
+                    completion({
+                        error: 'There was an error retrieving your balance'
+                    })
+                }
+            })  
+        } else {
+            completion({
+                error: 'Please include a valid wallet address'
+            }) 
+        }
+    })
+}
+
+
+
+
+
+// TODO: REMOVE THIS
 exports.getCoinInfo = () => {
 
     // Get Account 1 Address

@@ -14,7 +14,7 @@ This repository contains the initial structure for an ERC20 compliant Ethereum t
 # Features and design goals
 
 
-- [ ] **Best practices**: Smart contracts are written with the modern best practices of Ethereum community
+- **Best practices**: Smart contracts are written with the modern best practices of Ethereum community
 
 - [ ] **Separation of concerns**: Crowdsale, token and other logic lies in separate contracts that can be assembled together like lego bricks
 

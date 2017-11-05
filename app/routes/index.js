@@ -4,22 +4,27 @@
 const express = require('express');
 const router = express.Router();
 
-// Serve Index Web Page
-// router.get('/', function (req, res) {
-//     res.sendFile('index.html',{ root: require('path').join(__dirname, '../src') });
-// })
+// Serve Index Page
+router.get('/', function (req, res) {
+    res.send('Plz go away. thx. bai.');
+    // res.sendFile('index.html',{ root: require('path').join(__dirname, '../src') });
+})
 
 // Serve api status
 router.get('/status', function (req, res) {
     res.send({
-        'status': 'online',
         'uptime': process.uptime()
     });
 })
 
-// Check all requests for Access Key and Device Id
+// Serve Wallet Page
+router.get('/wallet', function(req, res) {
+    res.send('TODO: Add Wallet Webpage')
+})
+
+// Verify all API requests include API Key and Device Id
 router.use((req, res, next) => {
-    if (req.header("AccessKey") != require('../../config/config.json').apiKey) {
+    if (req.header("apiKey") != require('../../config/config.json').apiKey) {
         res.status(401)
         res.json({Error: "Unauthorized Request"})
         return
@@ -34,7 +39,10 @@ router.use((req, res, next) => {
     }
 })
 
-// Route /api
-router.use('/api', require('./api/index.js'))
+// Add v1 Routes
+router.use('/api/v1/wallet', require('./v1/wallet.js'))
+
+// Add v2 Routes
+router.use('/api/v2/wallet', require('./v2/wallet.js'))
 
 module.exports = router;

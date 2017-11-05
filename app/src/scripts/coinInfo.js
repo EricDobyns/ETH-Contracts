@@ -44,12 +44,12 @@ $(document).ready( function() {
 
             // Get SKC Conversion Rate
             crowdsale.rate().then(function(rate) {
-                console.log(rate.toNumber());
+                // console.log(rate.toNumber());
                 document.getElementById("conversionRate").innerHTML = rate.toNumber() + ' SKC = 1 Ether';
             })
 
             crowdsale.token().then(function(tokenAddress) {
-                console.log('Contract Address: ' + tokenAddress);
+                // console.log('Contract Address: ' + tokenAddress);
 
                 $.getJSON('../contracts/SkeletonCoin.json', function(SkeletonCoin_json) {
                     var skeletonCoin = TruffleContract( SkeletonCoin_json );
@@ -75,6 +75,23 @@ $(document).ready( function() {
 })
 
 $('#PurchaseCoinButton').click(function() {
+
+    /*
+    var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    var account1Address = web3.eth.accounts[0];
+
+    $.getJSON('../contracts/SkeletonCoinCrowdsale.json', function(SkeletonCoinCrowdsale_json) {
+        var contract = TruffleContract(SkeletonCoinCrowdsale_json);
+        contract.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+        contract.deployed().then(function(crowdsale) {
+
+
+        })
+    })
+    */
+
+    /*
     // Get Contract Information
     $.getJSON('../contracts/SkeletonCoin.json', function(SkeletonCoin_json) {
         
@@ -84,10 +101,13 @@ $('#PurchaseCoinButton').click(function() {
         contract.deployed().then(function(coin) {
 
             var account1Address = web3.eth.accounts[0];
-            coin.transfer(account1Address, 1).then(function(res) {
-                console.log(res);
-            })
+
+
+            // coin.transfer(account1Address, 1).then(function(res) {
+            //     console.log(res);
+            // })
 
         })
     })
+    */
 });

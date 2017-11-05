@@ -1,21 +1,23 @@
 {
 	"info": {
 		"name": "Skeleton Coin",
-		"_postman_id": "7dd70a7f-622d-3fe6-1c93-c0826b9bea85",
+		"_postman_id": "33bbeba9-6388-1ef4-d5e2-1ec465c55292",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Web Pages",
-			"description": "",
+			"name": "Web",
 			"item": [
 				{
-					"name": "Index",
+					"name": "/",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:1337",
 							"protocol": "http",
@@ -23,8 +25,36 @@
 								"localhost"
 							],
 							"port": "1337"
-						},
-						"description": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/wallet",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
+							},
+							{
+								"key": "DeviceId",
+								"value": "1234"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:1337/wallet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"wallet"
+							]
+						}
 					},
 					"response": []
 				}
@@ -43,12 +73,12 @@
 							"description": "",
 							"item": [
 								{
-									"name": "/wallet",
+									"name": "/wallet/:address",
 									"request": {
 										"method": "GET",
 										"header": [
 											{
-												"key": "AccessKey",
+												"key": "apiKey",
 												"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
 											},
 											{
@@ -58,7 +88,7 @@
 										],
 										"body": {},
 										"url": {
-											"raw": "http://localhost:1337/api/v1/wallet",
+											"raw": "http://localhost:1337/api/v1/wallet/0x1234",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -67,7 +97,83 @@
 											"path": [
 												"api",
 												"v1",
-												"wallet"
+												"wallet",
+												"0x1234"
+											]
+										},
+										"description": ""
+									},
+									"response": []
+								},
+								{
+									"name": "/wallet/:address/balance",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "apiKey",
+												"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
+											},
+											{
+												"key": "DeviceId",
+												"value": "1234"
+											}
+										],
+										"body": {},
+										"url": {
+											"raw": "http://localhost:1337/api/v1/wallet/0x1234/balance",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1337",
+											"path": [
+												"api",
+												"v1",
+												"wallet",
+												"0x1234",
+												"balance"
+											]
+										},
+										"description": ""
+									},
+									"response": []
+								},
+								{
+									"name": "/wallet/:address/token",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "apiKey",
+												"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
+											},
+											{
+												"key": "DeviceId",
+												"value": "1234"
+											}
+										],
+										"body": {},
+										"url": {
+											"raw": "http://localhost:1337/api/v1/wallet/0x1234/token?symbol=SKC",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1337",
+											"path": [
+												"api",
+												"v1",
+												"wallet",
+												"0x1234",
+												"token"
+											],
+											"query": [
+												{
+													"key": "symbol",
+													"value": "SKC",
+													"equals": true
+												}
 											]
 										},
 										"description": ""
@@ -76,70 +182,15 @@
 								}
 							],
 							"_postman_isSubFolder": true
-						},
-						{
-							"name": "/v1",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "AccessKey",
-										"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
-									},
-									{
-										"key": "DeviceId",
-										"value": "1234"
-									}
-								],
-								"body": {},
-								"url": {
-									"raw": "http://localhost:1337/api/v1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "1337",
-									"path": [
-										"api",
-										"v1"
-									]
-								},
-								"description": ""
-							},
-							"response": []
 						}
 					],
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "/api",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "AccessKey",
-								"value": "31e633b9-4bdf-4174-9611-b6ee9ce54c53"
-							},
-							{
-								"key": "DeviceId",
-								"value": "1234"
-							}
-						],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:1337/api",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "1337",
-							"path": [
-								"api"
-							]
-						},
-						"description": ""
-					},
-					"response": []
+					"name": "v2",
+					"description": "",
+					"item": [],
+					"_postman_isSubFolder": true
 				}
 			]
 		},
@@ -148,7 +199,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:1337/status",
 					"protocol": "http",
@@ -160,7 +214,7 @@
 						"status"
 					]
 				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		}
