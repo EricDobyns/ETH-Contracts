@@ -3,16 +3,24 @@
 // Set Constants
 const Web3 = require('web3')
 const contract = require('truffle-contract');
+
 const skeletonToken_artifacts = require('../../../build/contracts/SkeletonToken.json');
 const skeletonToken = contract(skeletonToken_artifacts);
-// const skeletonToken_Crowdsale_artifacts = require('../../../build/contracts/SkeletonToken_Crowdsale.json');
-// const skeletonTokenCrowdsale = contract(skeletonToken_Crowdsale_artifacts);
+
+const skeletonToken_Crowdsale_artifacts = require('../../../build/contracts/SkeletonToken_Crowdsale.json');
+const skeletonTokenCrowdsale = contract(skeletonToken_Crowdsale_artifacts);
 
 // Set Web3 Provider
 var provider = new Web3.providers.HttpProvider("http://localhost:8545");
 var web3 = new Web3(provider);
+
+// Set Token Provider
 skeletonToken.setProvider(provider);
-// skeletonTokenCrowdsale.setProvider(provider);
+
+// Set Crowdsale Contract Provider
+skeletonTokenCrowdsale.setProvider(provider);
+
+
 
 // Validate Address
 exports.validateAddress = (address, completion) => {
