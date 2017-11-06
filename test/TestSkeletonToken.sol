@@ -2,13 +2,13 @@ pragma solidity ^0.4.17;
 
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
-import "../contracts/SkeletonCoin.sol";
+import "../contracts/SkeletonToken.sol";
 
-contract TestSkeletonCoin {
+contract TestSkeletonToken {
 
   // FIX: This Test Will Not Run - Gas Price/Limit Issues
   function testTotalSupply() {
-    // SkeletonCoin skc = SkeletonCoin(DeployedAddresses.SkeletonCoin());
+    // SkeletonToken skc = SkeletonToken(DeployedAddresses.SkeletonToken());
 
     uint i = 1;
     uint t = 1;

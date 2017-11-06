@@ -1,19 +1,19 @@
 pragma solidity ^0.4.13;
 
-import './SkeletonCoin.sol';
 import 'zeppelin-solidity/contracts/crowdsale/Crowdsale.sol';
+import './SkeletonToken.sol';
 
 
-contract SkeletonCoinCrowdsale is Crowdsale {
+contract SkeletonToken_Crowdsale is Crowdsale {
 
-  function SkeletonCoinCrowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, address _wallet) 
+  function SkeletonToken_Crowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, address _wallet) 
     Crowdsale(_startTime, _endTime, _rate, _wallet) {          
   }
 
   // creates the token to be sold.
   // override this method to have crowdsale of a specific MintableToken token.
   function createTokenContract() internal returns (MintableToken) {
-    return new SkeletonCoin();
+    return new SkeletonToken();
   }
 
 }

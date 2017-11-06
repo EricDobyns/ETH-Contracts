@@ -1,4 +1,4 @@
-# Skeleton Coin
+# SkeletonToken
 [![npm](https://img.shields.io/badge/npm-v4.1.2-blue.svg)]()
 [![npm](https://img.shields.io/badge/node-%3E%3D7.5.0-brightgreen.svg)]()
 [![npm](https://img.shields.io/badge/build-passing-brightgreen.svg)]()

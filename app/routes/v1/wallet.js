@@ -12,8 +12,10 @@ router.get('/:address', function (req, res) {
 // Display eth balance
 router.get('/:address/balance', function (req, res) {
     if (req.params.address) {
-        wallet.getEthBalance(req.params.address, function(result) {
-            res.send(result);
+        wallet.getEthBalance(req.params.address, function(balance) {
+            res.send({
+                eth: balance
+            });
         })
     } else {
         res.send({
@@ -22,23 +24,31 @@ router.get('/:address/balance', function (req, res) {
     }
 })
 
-// Display token balance by symbol or address
+// Display token information by symbol or address
 router.get('/:address/token', function (req, res) {
+    var address = req.params.address;
+
     if (req.query.symbol) {
         switch (req.query.symbol) {
-            case 'SKC': case 'skc':            
-                res.send({
-                    'balance': 0,
-                    'conversionRate': 0,
-                    'value': 0
-                });
+            case 'SK': case 'sk':         
+                wallet.getSKBalance(address, function(tokenBalance) {
+
+                    // Get Value Per Token
+                    // TokenValue = balance * valuePerToken
+
+                    res.send({
+                        'valuePerToken': null,
+                        'tokenBalance': tokenBalance,
+                        'tokenValue': null
+                    });
+                })
                 break;
             default:
                 res.send('Display a specific token balance if query var specified');
             break;
         }
     } else if (req.query.address) {
-        res.send('TODO: get token balance by token address');
+        res.send('TODO: get token balance by contract address');
     }
 })
 

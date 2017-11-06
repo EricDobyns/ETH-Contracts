@@ -29,8 +29,8 @@ $(document).ready( function() {
         }
     })
 
-    $.getJSON('../contracts/SkeletonCoinCrowdsale.json', function(SkeletonCoinCrowdsale_json) {
-        var contract = TruffleContract(SkeletonCoinCrowdsale_json);
+    $.getJSON('../contracts/SkeletonToken_Crowdsale.json', function(SkeletonToken_Crowdsale_json) {
+        var contract = TruffleContract(SkeletonToken_Crowdsale_json);
         contract.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
 
         contract.deployed().then(function(crowdsale) {
@@ -51,14 +51,14 @@ $(document).ready( function() {
             crowdsale.token().then(function(tokenAddress) {
                 // console.log('Contract Address: ' + tokenAddress);
 
-                $.getJSON('../contracts/SkeletonCoin.json', function(SkeletonCoin_json) {
-                    var skeletonCoin = TruffleContract( SkeletonCoin_json );
-                    skeletonCoin.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
-                    var coinInstance = skeletonCoin.at(tokenAddress);
+                $.getJSON('../contracts/SkeletonToken.json', function(SkeletonToken_json) {
+                    var skeletonToken = TruffleContract( SkeletonToken_json );
+                    skeletonToken.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
+                    var coinInstance = skeletonToken.at(tokenAddress);
 
                     // Get Total Supply
                     coinInstance.totalSupply().then(function(instance) {
-                        document.getElementById("totalSupply").innerHTML = instance.toNumber() + ' Skeleton Coin';
+                        document.getElementById("totalSupply").innerHTML = instance.toNumber() + ' Skeleton Tokens';
                     })
 
                     // Get Current User's SKC Balance
@@ -75,39 +75,5 @@ $(document).ready( function() {
 })
 
 $('#PurchaseCoinButton').click(function() {
-
-    /*
-    var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-    var account1Address = web3.eth.accounts[0];
-
-    $.getJSON('../contracts/SkeletonCoinCrowdsale.json', function(SkeletonCoinCrowdsale_json) {
-        var contract = TruffleContract(SkeletonCoinCrowdsale_json);
-        contract.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
-
-        contract.deployed().then(function(crowdsale) {
-
-
-        })
-    })
-    */
-
-    /*
-    // Get Contract Information
-    $.getJSON('../contracts/SkeletonCoin.json', function(SkeletonCoin_json) {
-        
-        var contract = TruffleContract( SkeletonCoin_json );
-        contract.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
-
-        contract.deployed().then(function(coin) {
-
-            var account1Address = web3.eth.accounts[0];
-
-
-            // coin.transfer(account1Address, 1).then(function(res) {
-            //     console.log(res);
-            // })
-
-        })
-    })
-    */
+    console.log('Purchase Button Clicked');
 });

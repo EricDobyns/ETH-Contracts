@@ -3,32 +3,30 @@
 // Set Constants
 const Web3 = require('web3')
 const contract = require('truffle-contract');
-const skeletonCoin_artifacts = require('../../../build/contracts/SkeletonCoin.json');
-const skeletonCoinCrowdsale_artifacts = require('../../../build/contracts/SkeletonCoinCrowdsale.json');
-const skeletonCoin = contract(skeletonCoin_artifacts);
-const skeletonCoinCrowdsale = contract(skeletonCoinCrowdsale_artifacts);
+const skeletonToken_artifacts = require('../../../build/contracts/SkeletonToken.json');
+const skeletonToken = contract(skeletonToken_artifacts);
+// const skeletonToken_Crowdsale_artifacts = require('../../../build/contracts/SkeletonToken_Crowdsale.json');
+// const skeletonTokenCrowdsale = contract(skeletonToken_Crowdsale_artifacts);
 
 // Set Web3 Provider
 var provider = new Web3.providers.HttpProvider("http://localhost:8545");
 var web3 = new Web3(provider);
-skeletonCoin.setProvider(provider);
-skeletonCoinCrowdsale.setProvider(provider);
+skeletonToken.setProvider(provider);
+// skeletonTokenCrowdsale.setProvider(provider);
 
 // Validate Address
 exports.validateAddress = (address, completion) => {
     completion(web3.isAddress(address))
 }
 
-// Get Eth Balance For Wallet
+// Get Eth Balance
 exports.getEthBalance = (address, completion) => {
     this.validateAddress(address, function(isValid) {
         if (isValid) {
             web3.eth.getBalance(address, function (error, result) {
                 if (!error) {
                     var formattedBalance = web3.fromWei(result.toNumber(), 'ether');
-                    completion({
-                        eth: formattedBalance
-                    })
+                    completion(parseInt(formattedBalance))
                 } else {
                     completion({
                         error: 'There was an error retrieving your balance'
@@ -37,12 +35,33 @@ exports.getEthBalance = (address, completion) => {
             })  
         } else {
             completion({
-                error: 'Please include a valid wallet address'
+                error: 'Please include a valid address'
             }) 
         }
     })
 }
 
+// Get SK Token Value
+exports.getSKValuePerToken = (completion) => {
+
+}
+
+// Get SK Token Balance
+exports.getSKBalance = (address, completion) => {
+    this.validateAddress(address, function(isValid) {
+        if (isValid) {
+            skeletonToken.deployed().then(function(token) {
+                token.balanceOf(address).then(function(balance) {
+                    completion(balance.toNumber())
+                })
+            })
+        } else {
+            completion({
+                error: 'Please include a valid address'
+            }) 
+        }
+    })
+}
 
 
 
@@ -63,7 +82,7 @@ exports.getCoinInfo = () => {
     })
 
     // Get Contract Instance
-    skeletonCoinCrowdsale.deployed().then(function(crowdsale) {
+    skeletonTokenCrowdsale.deployed().then(function(crowdsale) {
 
         // Get SKC Crowdsale end time
         crowdsale.endTime().then(function(endTime) {
@@ -81,7 +100,7 @@ exports.getCoinInfo = () => {
         crowdsale.token().then(function(tokenAddress) {
             console.log('Contract Address: ' + tokenAddress);
 
-            var coinInstance = skeletonCoin.at(tokenAddress);
+            var coinInstance = skeletonToken.at(tokenAddress);
 
             // Get Total Supply
             coinInstance.totalSupply().then(function(instance) {

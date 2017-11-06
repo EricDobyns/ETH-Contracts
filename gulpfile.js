@@ -53,9 +53,9 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
-    gulp.src('build/contracts/SkeletonCoin.json')
+    gulp.src('build/contracts/SkeletonToken.json')
     .pipe(gulp.dest('app/dist/contracts'))
-    gulp.src('build/contracts/SkeletonCoinCrowdsale.json')
+    gulp.src('build/contracts/SkeletonToken_Crowdsale.json')
     .pipe(gulp.dest('app/dist/contracts'))    
     gulp.src('app/src/scripts/truffle-contract.min.js')
     .pipe(gulp.dest('app/dist/scripts'))
