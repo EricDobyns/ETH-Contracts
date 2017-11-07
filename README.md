@@ -1,6 +1,6 @@
 # SkeletonToken
-[![npm](https://img.shields.io/badge/npm-v4.1.2-blue.svg)]()
-[![npm](https://img.shields.io/badge/node-%3E%3D7.5.0-brightgreen.svg)]()
+[![npm](https://img.shields.io/badge/npm-%3E%3Dv4.1.2-blue.svg)]()
+[![npm](https://img.shields.io/badge/node-%3E%3D7.5.0-blue.svg)]()
 [![npm](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
 
 
@@ -35,8 +35,11 @@ The goal of this project is to develop a set of re-useable tools to provide cust
 
 - [x] **Build upon a foundation**: Instead of building everything from the scratch, use `OpenZeppelin contracts <https://github.com/OpenZeppelin/zeppelin-solidity/>`_ as much as possible as they are the gold standard of Solidity development
 
+# Development
+Please refer to our [development instructions](docs/development_instructions.md) to get started.
+
 # Documentation
-[insert content]
+Please refer to our collection of [documentation resources](docs/README.md).
 
 # Support
 [insert content]

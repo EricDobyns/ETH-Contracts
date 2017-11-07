@@ -1,4 +1,4 @@
-# Development 
+# Development: Getting Started 
 
 ## Setting up a local environment
 
@@ -23,7 +23,7 @@ testrpc --secure -u 0 -u 1
 
 > Use with MetaMask: Copy the Mnemonic received from your testnet into MetaMask in order to view testnet accounts. Make sure the Metamask network is set to http://localhost:8545/
 
-# Building Contracts 
+# Building Contracts With Truffle 
 
 ## Compile Contracts
 Compile all contracts from the /contracts folder and output to the /build folder:
