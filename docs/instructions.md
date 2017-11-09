@@ -6,7 +6,6 @@
 ```
 npm install -g truffle
 npm install -g ethereumjs-testrpc
-npm install -g gulp (if using web)
 ```
 
 ### Install Project Dependencies
@@ -39,16 +38,3 @@ Migrate compiled contracts to the testnet:
 truffle migrate --reset
 ```
 
-# Usage
-
-## Deploy Static Webpage
-Start up a local web environment:
-```
-gulp
-```
-
-## Deploy local API
-Start up a local API:
-```
-npm start
-```

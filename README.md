@@ -1,13 +1,11 @@
-# SkeletonToken
+# Eth - Contracts
 [![npm](https://img.shields.io/badge/npm-%3E%3Dv4.1.2-blue.svg)]()
 [![npm](https://img.shields.io/badge/node-%3E%3D7.5.0-blue.svg)]()
 [![npm](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
 
 
 ## About
-This repository contains the initial structure for an ERC20 compliant Ethereum token; a web interface; and a public API. The code-base makes use of Zeppelin and its standard templates, Safemath and other standard solidity best practices. All non-standard functions are unit tested. 
-
-The goal of this project is to develop a set of re-useable tools to provide customers with a range of high-quality blockchain products. Influences include Zeppelin Solutions, TokenMarket.net, Etherscan.io & many more.
+This repository contains a set of re-useable tools to provide customers with a range of high-quality blockchain products. The code-base makes use of Zeppelin and its standard templates, Safemath and other standard solidity best practices. All non-standard functions are unit tested. Influences include Zeppelin Solutions, TokenMarket.net, Etherscan.io & many more.
 
 ## Requirements
 - Node.js 5.0+ recommended
@@ -36,10 +34,10 @@ The goal of this project is to develop a set of re-useable tools to provide cust
 - [x] **Build upon a foundation**: Instead of building everything from the scratch, use `OpenZeppelin contracts <https://github.com/OpenZeppelin/zeppelin-solidity/>`_ as much as possible as they are the gold standard of Solidity development
 
 # Development
-Please refer to our [development instructions](docs/development_instructions.md) to get started.
+[Insert Content]
 
 # Documentation
-Please refer to our collection of [documentation resources](docs/README.md).
+[Insert Content]
 
 # Support
 [insert content]
